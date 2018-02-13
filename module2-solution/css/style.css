@@ -91,6 +91,7 @@ body{
     .menuItemTitle{
         text-align: center;
         float: none;
+        font-size: 1.5em;
     }
 
     .menuItemBox{
@@ -109,7 +110,7 @@ body{
 
 
     .description{
-        display: block;
+        display: inline;
     }
 }
 @media (min-width: 992px){
