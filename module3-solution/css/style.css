@@ -1,0 +1,36 @@
+.navbar-brand {
+    font-size: 3em;
+}
+
+.navbar-default {
+    background-color: #2b542c;
+    border: 0;
+    border-radius: 0;
+}
+
+#header-nav{
+    margin-bottom: 0px;
+}
+
+.border{
+    outline: 1px solid black;
+}
+
+.menu{
+    background-color: #5cb85c;
+    margin-bottom: 0;
+}
+
+.menu-item{
+    margin: 15px 5px 5px 5px;
+}
+
+.item-body{
+    padding: 5px 5px 5px 5px;
+    overflow: auto;
+}
+
+.navbar-collapse{
+    padding-right:0;
+    padding-left: 0;
+}
