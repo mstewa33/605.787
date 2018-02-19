@@ -13,7 +13,7 @@
 }
 
 .border{
-    outline: 1px solid black;
+    border: 1px solid black;
 }
 
 .menu{
@@ -27,10 +27,21 @@
 
 .item-body{
     padding: 5px 5px 5px 5px;
-    overflow: auto;
 }
 
 .navbar-collapse{
     padding-right:0;
     padding-left: 0;
+}
+
+.chicken{
+    background-color: yellow;
+}
+
+.beef{
+    background-color: red;
+}
+
+.sushi{
+    background-color: blue;
 }
