@@ -36,19 +36,12 @@ WARNING!!! WARNING!!!
 (function(window){
     var names = ["Yaakov", "John", "Jen", "Jason", "Paul", "Frank", "Larry", "Paula", "Laura", "Jim"];
 
-    var getSpeakSimple = function(name){
-        if (name.charAt(0).toLowerCase() == 'j') {
-            return byeSpeaker.speakSimple(name);
-        } else {
-            return helloSpeaker.speakSimple(name);
-        }
-    }
-
     // STEP 10:
     // Loop over the names array and say either 'Hello' or "Good Bye"
     // using the 'speak' method or either helloSpeaker's or byeSpeaker's
     // 'speak' method.
     // See Lecture 50, part 1
+    console.log("\nIf/Else and printing names");
     for (var i = 0; i < names.length; i++) {
         var name = names[i];
 
@@ -73,11 +66,22 @@ WARNING!!! WARNING!!!
         }
     }
 
-    var speakSimpleNames = names.map(getSpeakSimple)
+    console.log("\nMapping and printing names");
+
+    var getSpeakSimpleName = function(name){
+        if (name.charAt(0).toLowerCase() == 'j') {
+            return byeSpeaker.speakSimple(name);
+        } else {
+            return helloSpeaker.speakSimple(name);
+        }
+    };
+    var speakSimpleNames = names.map(getSpeakSimpleName);
 
     for(var i = 0; i < speakSimpleNames.length; i++){
         console.log(speakSimpleNames[i]);
     }
+
+    console.log("\nReducing and printing names");
 
     var reducedNames = {
         hello : [],
