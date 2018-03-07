@@ -14,6 +14,7 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
 var dc = {};
 
 var homeHtmlUrl = "snippets/home-snippet.html";
+var aboutHtmlUrl = "snippets/about.html";
 var allCategoriesUrl =
   "https://davids-restaurant.herokuapp.com/categories.json";
 var categoriesTitleHtml = "snippets/categories-title-snippet.html";
@@ -103,7 +104,7 @@ function buildAndShowHomeHTML (categories) {
       // variable's name implies it expects.
       // var chosenCategoryShortName = ....
 
-        var chosenCategoryShortName = chooseRandomCategory(categories);
+        var chosenCategoryShortName = chooseRandomCategory(categories)['short_name'];
 
       // TODO: STEP 3: Substitute {{randomCategoryShortName}} in the home html snippet with the
       // chosen category from STEP 2. Use existing insertProperty function for that purpose.
@@ -118,7 +119,7 @@ function buildAndShowHomeHTML (categories) {
       //
       // var homeHtmlToInsertIntoMainPage = ....
 
-        var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml, 'randomCategoryShortName', '\'' + chosenCategoryShortName['short_name'] + '\'');
+        var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml, 'randomCategoryShortName', '\'' + chosenCategoryShortName + '\'');
 
       // TODO: STEP 4: Insert the the produced HTML in STEP 3 into the main page
       // Use the existing insertHtml function for that purpose. Look through this code for an example
@@ -139,6 +140,9 @@ function chooseRandomCategory (categories) {
   return categories[randomArrayIndex];
 }
 
+function generateRandomNumber(max){
+  return Math.floor(Math.random() * Math.floor(max)) + 1;
+}
 
 // Load the menu categories view
 dc.loadMenuCategories = function () {
@@ -149,6 +153,14 @@ dc.loadMenuCategories = function () {
 };
 
 
+dc.loadAboutPage = function(){
+  showLoading("#main-content");
+ $ajaxUtils.sendGetRequest(
+     aboutHtmlUrl,
+     buildAndShowAboutHTML,
+     false);
+};
+
 // Load the menu items view
 // 'categoryShort' is a short_name for a category
 dc.loadMenuItems = function (categoryShort) {
@@ -157,6 +169,26 @@ dc.loadMenuItems = function (categoryShort) {
     menuItemsUrl + categoryShort,
     buildAndShowMenuItemsHTML);
 };
+
+//Builds HTML for about html page
+function buildAndShowAboutHTML (aboutPageHtml) {
+   var html = aboutPageHtml;
+    var numberOfStars = generateRandomNumber(5);
+
+    var ratingString = numberOfStars + '-star Rating';
+
+    for(var i = 1; i <= 5; i++){
+      var classString = 'class' + i;
+      if( i <= numberOfStars ) {
+          html = insertProperty(html, classString, 'fa fa-star');
+      }else{
+          html = insertProperty(html, classString, 'far fa-star');
+      }
+    }
+
+    html = insertProperty(html, 'rating', ratingString);
+    insertHtml("#main-content", html);
+}
 
 
 // Builds HTML for the categories page based on the data
