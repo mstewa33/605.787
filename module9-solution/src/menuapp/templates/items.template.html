@@ -1,7 +1,12 @@
 
-<h3>{{$ctrl.items.category.name}}</h3>
-<ul>
-    <li ng-repeat="item in $ctrl.items.menu_items">
-        {{item.name}}
-    </li>
-</ul>
+<h3>Category: {{$ctrl.items.category.name}} ({{$ctrl.items.category.short_name}})</h3>
+<div ng-repeat="item in $ctrl.items.menu_items" >
+    <div class="panel panel-default  text-center">
+        <div class="panel-heading">
+            {{item.name}} ({{item.short_name}})
+        </div>
+        <div class="panel-body">
+            {{item.description}}
+        </div>
+    </div>
+</div>
