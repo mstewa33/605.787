@@ -25,7 +25,7 @@
                 },
             })
             .state('items', {
-                url: '/items/{shortName}',
+                url: '/categories/{shortName}',
                 templateUrl: 'src/menuapp/templates/main-items.template.html',
                 controller: 'ItemsCtrl as itemsCtrl',
                 resolve:{
