@@ -1,0 +1,29 @@
+<form name="signUpForm" novalidate>
+    <input type="text" name="firstName" ng-model="signUpCtrl.user.firstName" required>
+    <span ng-if="signUpForm.firstName.$error.required && signUpForm.name.$touched">
+        First Name is Required
+    </span>
+    <input type="text" name="lastName" ng-model="signUpCtrl.user.lastName" required>
+    <span ng-if="signUpForm.lastName.$error.required && signUpForm.lastName.$touched">
+        Last Name is Required
+    </span>
+    <input type="email" name="email" ng-model="signUpCtrl.user.email" required
+    placeholder="Email">
+    <span ng-if="signUpForm.email.$invalid && signUpForm.email.$touched">
+        Email is Required
+    </span>
+    <input type="text" name="phoneNumber" ng-model="signUpCtrl.user.phoneNumber" required
+    placeholder="Phone ###-###-####" pattern="(\d{3})-(\d{3})-(\d{4})">
+    <span ng-if="signUpForm.firstName.$error.required && signUpForm.name.$touched">
+        Phone Number must be in the format ###-###-####
+    </span>
+    <input type="text" name="shortName" ng-model="signUpCtrl.user.shortName" required>
+    <span ng-if="signUpForm.firstName.$error.required && signUpForm.name.$touched">
+        Menu item not found
+    </span>
+    <button ng-disabled="signUpForm.$invalid" ng-click="signUpCtrl.signUp()">Submit</button>
+</form>
+
+<div id="info" ng-if="completed">
+    Your information has been saved.
+</div>

@@ -50,3 +50,11 @@ input[type="text"] {
     transform: rotate(360deg);
   }
 }
+
+.ng-touched.ng-valid{
+  border: 2px green solid;
+}
+
+.ng-touched.ng-invalid{
+  border: 2px red solid;
+}
