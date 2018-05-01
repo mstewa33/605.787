@@ -183,3 +183,11 @@ h3.menu-item-title {
     width: 100%;
   }
 }
+
+.form-control{
+  width:200px;
+}
+
+.list-group-item{
+  color: black;
+}

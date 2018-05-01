@@ -4,10 +4,15 @@
     angular.module('public')
         .controller('SignUpController', SignUpController);
 
-    SignUpController.$inject = ['menuItems'];
-    function SignUpController(menuItems) {
+    SignUpController.$inject = ['UserService'];
+    function SignUpController(UserService) {
         var $ctrl = this;
-        $ctrl.menuItems = menuItems;
+        $ctrl.completed = false;
+
+        $ctrl.signUp = function(){
+            UserService.setUser($ctrl.user);
+            $ctrl.completed = true;
+        }
     }
 
 })();

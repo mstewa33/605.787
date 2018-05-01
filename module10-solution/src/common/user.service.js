@@ -7,14 +7,14 @@
     function UserService() {
         var service = this;
 
-        service.favoriteMenuItem = "";
+        service.user = null;
 
-        service.getFavoriteMenuItem = function(){
-            return service.favoriteMenuItem;
+        service.getUser = function(){
+            return service.user;
         };
 
-        service.setFavoriteMenuItem = function(menuItem){
-            service.favoriteMenuItem = menuItem;
+        service.setUser = function(user){
+            service.user = user;
         };
 
     }

@@ -45,10 +45,25 @@ function routeConfig ($stateProvider) {
       url: '/signup',
         templateUrl: 'src/public/sign-up/sign-up.html',
         controller: 'SignUpController',
-        controllerAs: 'signUpCtrl',
+        controllerAs: 'signUpCtrl'
+
+    })
+    .state('public.myInfo', {
+        url: '/myInfo',
+        templateUrl: 'src/public/my-info/my-info.html',
+        controller: 'MyInfoController',
+        controllerAs: 'myInfoCtrl',
         resolve:{
-            menuItems: ['MenuService', function (MenuService) {
-                return MenuService.getMenuItems();
+            menuItem: ['MenuService', 'UserService', function (MenuService, UserService) {
+                var user = UserService.getUser();
+                if(user)
+                    return MenuService.getMenuItems(user.shortName);
+                else
+                  return null;
+
+            }],
+            user: ['UserService', function(UserService){
+              return UserService.getUser();
             }]
         }
 
