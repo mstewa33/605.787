@@ -13,16 +13,16 @@
             link: function(scope, elm, attrs, ctrl){
                 ctrl.doesMenuItemExist = function(response, modelValue){
                     if(!response)
-                        return $q.reject();
+                        return false;
 
                     var results = response.menu_items.filter(function(value){
                         return value.short_name === modelValue;
                     });
 
                     if(results.length > 0)
-                        return $q.resolve();
+                        return true;
                     else
-                        return $q.reject();
+                        return false;
                 };
 
                 ctrl.$asyncValidators.menuItemValidator =
@@ -30,7 +30,13 @@
 
                     return MenuService.getMenuItems()
                         .then(function(response){
-                            ctrl.doesMenuItemExist(response, modelValue)
+                            var result = ctrl.doesMenuItemExist(response, modelValue);
+
+                            if(result)
+                                return $q.resolve();
+                            else
+                                return $q.reject();
+
                         });
                 };
             }

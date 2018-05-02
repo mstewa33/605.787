@@ -14,5 +14,4 @@
             $ctrl.completed = true;
         }
     }
-
 })();

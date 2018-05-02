@@ -9,24 +9,35 @@ MenuService.$inject = ['$http', 'ApiPath'];
 function MenuService($http, ApiPath) {
   var service = this;
 
-  service.getCategories = function () {
-    return $http.get(ApiPath + '/categories.json').then(function (response) {
-      return response.data;
-    });
+  service.getCategories = function (category) {
+      var config = {};
+      if(category){
+          return $http.get(ApiPath + '/categories' + category + '.json').then(function (response) {
+              return response.data;
+          });
+      }else {
+          return $http.get(ApiPath + '/categories.json').then(function (response) {
+              return response.data;
+          });
+      }
   };
 
   service.getMenuItems = function (category) {
     var config = {};
     if (category) {
-      return $http.get(ApiPath + '/menu_items/' + category + '.json', config).then(function (response) {
+      var response = $http.get(ApiPath + '/menu_items/' + category + '.json', config).then(function (response) {
           return response.data;
       });
+
+      return response;
     }
     else {
-        return $http.get(ApiPath + '/menu_items.json', config).then(function (response) {
+        var response = $http.get(ApiPath + '/menu_items.json', config).then(function (response) {
             return response.data;
         });
-    }
+
+        return response;
+        }
   };
 
 }
