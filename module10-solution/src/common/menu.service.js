@@ -40,6 +40,21 @@ function MenuService($http, ApiPath) {
         }
   };
 
+    service.doesMenuItemExist = function(menu_items, modelValue){
+        if(!menu_items)
+            return false;
+
+        var results = menu_items.filter(function(value){
+            return value.short_name === modelValue;
+        });
+
+        if(results.length > 0)
+            return true;
+        else
+            return false;
+    };
+
+
 }
 
 

@@ -7,7 +7,8 @@ describe('Validate Menu Item', function(){
         $componentController,
         menuService,
         ApiPath,
-    form;
+        controller,
+        form;
 
    beforeEach(function(){
 
@@ -17,27 +18,6 @@ describe('Validate Menu Item', function(){
             $httpBackend = $injector.get('$httpBackend');
             menuService = $injector.get('MenuService');
             ApiPath = $injector.get('ApiPath');
-
-            $compile = _$compile_;
-            $rootScope = _$rootScope_;
-
-            var directiveTemplate = null;
-            var req = new XMLHttpRequest();
-            req.onload = function(){
-                directiveTemplate = this.responseText;
-            }
-
-            var element = angular.element(
-                '<form name="form">' +
-                '<input type="text" ng-model="inputValue" name="inputValue" menu-item-validator>' +
-                '</form>'
-            );
-            $rootScope.inputValue = "";
-            $compile(element)($rootScope);
-
-
-            form = $rootScope.form;
-
         });
 
     });
@@ -68,15 +48,9 @@ describe('Validate Menu Item', function(){
         menuService.getMenuItems().then(function(response){
             result = response;
 
-            form.inputValue.$setViewValue(result.menu_items[0].short_name);
-            form.inputValue.$setTouched();
+            expect(menuService.doesMenuItemExist(result.menu_items, "L1")).toBe(true);
 
-
-        })
-            .then(function(response){
-                expect(form.inputValue.$valid).toBe(true);
-            });
-
+        });
         $httpBackend.flush();
 
     });
