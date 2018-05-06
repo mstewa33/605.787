@@ -26,7 +26,7 @@
         <label for="phone" class="col-md-2 col-form-label">Phone Number: </label>
         <input class="form-control" id="phone" type="text" name="phone" ng-model="signUpCtrl.user.phoneNumber" required
         placeholder="Phone ###-###-####" pattern="(\d{3})-(\d{3})-(\d{4})">
-        <span ng-if="signUpForm.phone.$error.required && signUpForm.phone.$touched">
+        <span ng-if="(signUpForm.phone.$error.required || signUpForm.phone.$invalid) && signUpForm.phone.$touched">
             Phone Number must be in the format ###-###-####
         </span>
     </div>
